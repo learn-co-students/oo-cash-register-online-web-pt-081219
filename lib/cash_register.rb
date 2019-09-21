@@ -19,7 +19,7 @@
 #       @items << title
 #     end
 #     @total += price*quantity
-#     @last_transaction_amount = @total
+#     @last_transaction_amount = price*quantity 
 #     @total
 #   end
   
@@ -50,7 +50,7 @@
 
 # end
 
-
+ require 'pry'
 class CashRegister
 
   attr_accessor :total, :discount, :last_transaction_amount, :items
@@ -72,8 +72,8 @@ class CashRegister
     else
       @items << title
     end
-    @total += price*quantity
-    @last_transaction_amount = @total
+    @total += price*quantity #total of all items cause it increments up
+    @last_transaction_amount = price*quantity # literal last price*quantity and gets overwritten every time this method is run
     @total
   end
 
