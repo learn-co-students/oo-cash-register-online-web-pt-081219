@@ -17,7 +17,26 @@ describe 'CashRegister' do
       cash_register.total = 100
       expect(cash_register.total).to eq(100)
     end
+      expect(cash_register.apply_discount).to eq("There is no discount to apply.")
+    end
   end
+
+  describe '#items' do
+    it 'returns an array containing all items that have been added' do
+      new_register = CashRegister.new
+      new_register.add_item("eggs", 1.99)
+
+  describe '#apply_discount' do
+    context 'the cash register was initialized with an employee discount' do
+      it 'applies the discount to the total price' do
+        cash_register_with_discount.add_item("macbook air", 1000)
+      new_register.add_item("tomato", 1.76, 3)
+      expect(new_register.items).to eq(["eggs", "tomato", "tomato", "tomato"])
+    end
+        cash_register_with_discount.add_item("macbook air", 1000)
+        expect(cash_register_with_discount.apply_discount).to eq("After the discount, the total comes to $800.")
+      end
+
 
   describe '#add_item' do
     it 'accepts a title and a price and increases the total' do
@@ -37,20 +56,11 @@ describe 'CashRegister' do
       expect(cash_register.total).to eq(14.5)
     end
   end
-
-  describe '#apply_discount' do
-    context 'the cash register was initialized with an employee discount' do
-      it 'applies the discount to the total price' do
-        cash_register_with_discount.add_item("macbook air", 1000)
         cash_register_with_discount.apply_discount
         expect(cash_register_with_discount.total).to eq(800)
       end
 
       it 'returns success message with updated total' do
-        cash_register_with_discount.add_item("macbook air", 1000)
-        expect(cash_register_with_discount.apply_discount).to eq("After the discount, the total comes to $800.")
-      end
-
       it 'reduces the total' do
         cash_register.total = 0
         cash_register_with_discount.add_item("macbook air", 1000)
@@ -60,18 +70,6 @@ describe 'CashRegister' do
 
     context 'the cash register was not initialized with an employee discount' do
       it 'returns a string error message that there is no discount to apply' do
-        expect(cash_register.apply_discount).to eq("There is no discount to apply.")
-      end
-    end
-  end
-
-  describe '#items' do
-    it 'returns an array containing all items that have been added' do
-      new_register = CashRegister.new
-      new_register.add_item("eggs", 1.99)
-      new_register.add_item("tomato", 1.76, 3)
-      expect(new_register.items).to eq(["eggs", "tomato", "tomato", "tomato"])
-    end
   end
 
   describe '#void_last_transaction' do
